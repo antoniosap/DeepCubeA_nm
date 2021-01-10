@@ -35,14 +35,14 @@ def render_path(board_path: np.ndarray, soln):
     global batch_number
 
     batch_number += 1
-    i = 1
+    i = 0
     first = True
     for item in board_path:
         if first:
             first = False
-            logger_main.info('-' * SEPARATOR_LEN + ' ' + str(i) + ' BATCH NR: ' + str(batch_number))
+            logger_main.info('-' * SEPARATOR_LEN + ' BATCH NR: ' + str(batch_number))
         else:
-            logger_main.info('-' * SEPARATOR_LEN + ' ' + str(i) + ' (' + moves[soln[i - 2]] + ')')
+            logger_main.info('-' * SEPARATOR_LEN + ' ' + str(i) + ' (' + moves[soln[i - 1]] + ')')
         render(item.tiles, size_rows=4, size_cols=4)
         i += 1
     logger_main.info('=' * SEPARATOR_LEN)

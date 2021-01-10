@@ -6,5 +6,6 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="n-puzzle" />
     <orderEntry type="module" module-name="DeepReinforcementLearning" />
+    <orderEntry type="module" module-name="z3-trials" />
   </component>
 </module>
