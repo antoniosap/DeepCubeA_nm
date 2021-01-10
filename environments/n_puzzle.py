@@ -5,6 +5,7 @@ import torch.nn as nn
 from utils.pytorch_models import ResnetModel
 from .environment_abstract import Environment, State
 from random import randrange
+import logging
 
 
 class NPuzzleState(State):
@@ -22,6 +23,13 @@ class NPuzzleState(State):
 
     def __eq__(self, other):
         return np.array_equal(self.tiles, other.tiles)
+
+    def render(self, size_rows, size_cols):
+        board = np.reshape(self.board, (self.size_rows, self.size_cols))
+        for r in range(self.size_rows):
+            s = str([self.pieces[str(x)] for x in board[r]])
+            logger.info([self.pieces[str(x)] for x in board[r]])
+        logger.info('-' * len(s))
 
 
 class NPuzzle(Environment):

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/DeepCubeA.iml" filepath="$PROJECT_DIR$/.idea/DeepCubeA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../AlphaZero/.idea/DeepReinforcementLearning.iml" filepath="$PROJECT_DIR$/../AlphaZero/.idea/DeepReinforcementLearning.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../n-puzzle/.idea/n-puzzle.iml" filepath="$PROJECT_DIR$/../n-puzzle/.idea/n-puzzle.iml" />
+    </modules>
+  </component>
+</project>

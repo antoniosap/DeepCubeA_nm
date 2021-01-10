@@ -1,3 +1,4 @@
-matplotlib
-numpy
-pytorch
+conda install matplotlib
+conda install numpy
+conda install -c pytorch torchvision cudatoolkit pytorch
+
