@@ -123,8 +123,6 @@ def get_device() -> Tuple[torch.device, List[int], bool]:
     device: torch.device = torch.device("cpu")
     devices: List[int] = []
     on_gpu: bool = False
-    print(os.environ)
-    print(torch.cuda.is_available())
     if ('CUDA_VISIBLE_DEVICES' in os.environ) and torch.cuda.is_available():
         device = torch.device("cuda:%i" % 0)
         devices = [int(x) for x in os.environ['CUDA_VISIBLE_DEVICES'].split(",")]

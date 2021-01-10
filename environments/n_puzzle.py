@@ -5,6 +5,7 @@ import torch.nn as nn
 from utils.pytorch_models import ResnetModel
 from .environment_abstract import Environment, State
 from random import randrange
+from .visualizer import render
 import logging
 
 
@@ -23,13 +24,6 @@ class NPuzzleState(State):
 
     def __eq__(self, other):
         return np.array_equal(self.tiles, other.tiles)
-
-    def render(self, size_rows, size_cols):
-        board = np.reshape(self.board, (self.size_rows, self.size_cols))
-        for r in range(self.size_rows):
-            s = str([self.pieces[str(x)] for x in board[r]])
-            logger.info([self.pieces[str(x)] for x in board[r]])
-        logger.info('-' * len(s))
 
 
 class NPuzzle(Environment):
@@ -86,8 +80,10 @@ class NPuzzle(Environment):
     def is_solved(self, states: List[NPuzzleState]) -> np.ndarray:
         states_np = np.stack([state.tiles for state in states], axis=0)
         is_equal = np.equal(states_np, np.expand_dims(self.goal_tiles, 0))
+        solved = np.all(is_equal, axis=1)
 
         return np.all(is_equal, axis=1)
+
 
     def state_to_nnet_input(self, states: List[NPuzzleState]) -> List[np.ndarray]:
         states_np = np.stack([x.tiles for x in states], axis=0)

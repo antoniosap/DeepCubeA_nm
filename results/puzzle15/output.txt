@@ -1,2 +1,118 @@
-environ({'PATH': '/home/aldebaran/.miniconda3/envs/DeepCubeA/bin:/home/aldebaran/.miniconda3/condabin:/home/aldebaran/.opam/default/bin:/home/aldebaran/bin:/home/aldebaran/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin', 'LC_MEASUREMENT': 'it_IT.UTF-8', 'XAUTHORITY': '/run/user/1000/gdm/Xauthority', 'INVOCATION_ID': 'bd94637614b04caf9562b8f8557d9228', 'XMODIFIERS': '@im=ibus', 'LC_TELEPHONE': 'it_IT.UTF-8', 'XDG_DATA_DIRS': '/usr/share/ubuntu:/home/aldebaran/.local/share/flatpak/exports/share:/var/lib/flatpak/exports/share:/usr/local/share/:/usr/share/:/var/lib/snapd/desktop:/var/lib/snapd/desktop', 'GDMSESSION': 'ubuntu', 'MANDATORY_PATH': '/usr/share/gconf/ubuntu.mandatory.path', 'LC_TIME': 'it_IT.UTF-8', 'CONDA_DEFAULT_ENV': 'DeepCubeA', 'DBUS_SESSION_BUS_ADDRESS': 'unix:path=/run/user/1000/bus', 'IDE_PROJECT_ROOTS': '/home/aldebaran/workspace-z3/DeepCubeA:/home/aldebaran/workspace-z3/n-puzzle:/home/aldebaran/workspace-z3/AlphaZero', 'DEFAULTS_PATH': '/usr/share/gconf/ubuntu.default.path', 'XDG_CURRENT_DESKTOP': 'ubuntu:GNOME', 'CONDA_PREFIX': '/home/aldebaran/.miniconda3/envs/DeepCubeA', 'CUDA_VISIBLE_DEVICES': '0', 'JOURNAL_STREAM': '9:51873', 'SSH_AGENT_PID': '6990', 'LC_PAPER': 'it_IT.UTF-8', 'SESSION_MANAGER': 'local/aldebaran-i5-7400:@/tmp/.ICE-unix/7968,unix/aldebaran-i5-7400:/tmp/.ICE-unix/7968', 'USERNAME': 'aldebaran', 'LOGNAME': 'aldebaran', 'PWD': '/home/aldebaran/workspace-z3/DeepCubeA', 'MANAGERPID': '1818', 'IM_CONFIG_PHASE': '1', 'OCAML_TOPLEVEL_PATH': '/home/aldebaran/.opam/default/lib/toplevel', 'PYCHARM_HOSTED': '1', 'GJS_DEBUG_TOPICS': 'JS ERROR;JS LOG', 'PYTHONPATH': '/home/aldebaran/workspace-z3/DeepCubeA:/home/aldebaran/workspace-z3/AlphaZero:/home/aldebaran/workspace-z3/n-puzzle:/home/aldebaran/.local/share/JetBrains/Toolbox/apps/PyCharm-C/ch-0/203.6682.179/plugins/python-ce/helpers/third_party/thriftpy:/home/aldebaran/.local/share/JetBrains/Toolbox/apps/PyCharm-C/ch-0/203.6682.179/plugins/python-ce/helpers/pydev:/home/aldebaran/.cache/JetBrains/PyCharmCE2020.3/cythonExtensions:/home/aldebaran/workspace-z3/DeepCubeA', 'SHELL': '/bin/bash', 'LC_ADDRESS': 'it_IT.UTF-8', 'GIO_LAUNCHED_DESKTOP_FILE': '/home/aldebaran/.local/share/applications/jetbrains-pycharm-ce.desktop', 'GTK2_MODULES': 'overlay-scrollbar', 'OLDPWD': '/home/aldebaran/.local/share/JetBrains/Toolbox/apps/PyCharm-C/ch-0/203.6682.179/bin', 'IPYTHONENABLE': 'True', 'GNOME_DESKTOP_SESSION_ID': 'this-is-deprecated', 'GTK_MODULES': 'gail:atk-bridge', 'CONDA_PROMPT_MODIFIER': '(DeepCubeA) ', 'XDG_SESSION_DESKTOP': 'ubuntu', 'SHLVL': '0', 'LC_IDENTIFICATION': 'it_IT.UTF-8', 'LC_MONETARY': 'it_IT.UTF-8', 'MANPATH': ':/home/aldebaran/.opam/default/man', 'QT_IM_MODULE': 'ibus', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-ubuntu:/etc/xdg', 'LANG': 'en_US.UTF-8', 'XDG_SESSION_TYPE': 'x11', 'PYDEVD_LOAD_VALUES_ASYNC': 'True', 'DISPLAY': ':0', 'LIBVIRT_DEFAULT_URI': 'qemu:///system', 'LIBRARY_ROOTS': '/home/aldebaran/.miniconda3/envs/DeepCubeA/lib/python3.7:/home/aldebaran/.miniconda3/envs/DeepCubeA/lib/python3.7/lib-dynload:/home/aldebaran/.local/lib/python3.7/site-packages:/home/aldebaran/.local/lib/python3.7/site-packages/scipy-1.5.0.dev0+6143bb8-py3.7-linux-x86_64.egg:/home/aldebaran/.miniconda3/envs/DeepCubeA/lib/python3.7/site-packages:/home/aldebaran/.cache/JetBrains/PyCharmCE2020.3/python_stubs/902210346:/home/aldebaran/.local/share/JetBrains/Toolbox/apps/PyCharm-C/ch-0/203.6682.179/plugins/python-ce/helpers/python-skeletons:/home/aldebaran/.local/share/JetBrains/Toolbox/apps/PyCharm-C/ch-0/203.6682.179/plugins/python-ce/helpers/typeshed/stdlib/3.7:/home/aldebaran/.local/share/JetBrains/Toolbox/apps/PyCharm-C/ch-0/203.6682.179/plugins/python-ce/helpers/typeshed/stdlib/3:/home/aldebaran/.local/share/JetBrains/Toolbox/apps/PyCharm-C/ch-0/203.6682.179/plugins/python-ce/helpers/typeshed/stdlib/2and3:/home/aldebaran/.local/share/JetBrains/Toolbox/apps/PyCharm-C/ch-0/203.6682.179/plugins/python-ce/helpers/typeshed/third_party/3:/home/aldebaran/.local/share/JetBrains/Toolbox/apps/PyCharm-C/ch-0/203.6682.179/plugins/python-ce/helpers/typeshed/third_party/2and3', 'CAML_LD_LIBRARY_PATH': '/home/aldebaran/.opam/default/lib/stublibs:/home/aldebaran/.opam/default/lib/ocaml/stublibs:/home/aldebaran/.opam/default/lib/ocaml', 'LC_NAME': 'it_IT.UTF-8', 'CONDA_SHLVL': '1', 'XDG_SESSION_CLASS': 'user', '_': '/usr/bin/dbus-update-activation-environment', 'OPAM_SWITCH_PREFIX': '/home/aldebaran/.opam/default', 'PYTHONIOENCODING': 'UTF-8', 'GPG_AGENT_INFO': '/run/user/1000/gnupg/S.gpg-agent:0:1', 'DESKTOP_SESSION': 'ubuntu', 'USER': 'aldebaran', 'XDG_MENU_PREFIX': 'gnome-', 'GIO_LAUNCHED_DESKTOP_FILE_PID': '13086', 'QT_ACCESSIBILITY': '1', 'WINDOWPATH': '2', 'PYTHONDONTWRITEBYTECODE': '1', 'LC_NUMERIC': 'it_IT.UTF-8', 'GJS_DEBUG_OUTPUT': 'stderr', 'SSH_AUTH_SOCK': '/run/user/1000/keyring/ssh', 'PYTHONUNBUFFERED': '1', 'QT_QPA_PLATFORMTHEME': 'appmenu-qt5', 'GNOME_SHELL_SESSION_MODE': 'ubuntu', 'XDG_RUNTIME_DIR': '/run/user/1000', 'HOME': '/home/aldebaran'})
-False
+device: cuda:0, devices: [0], on_gpu: True
+Itr: 0, Added to OPEN - Min/Max Heur(PathCost): 38.32(1.00)/41.73(1.00) 
+Times - pop: 0.00, expand: 0.00, check: 0.00, heur: 0.00, add: 0.00, itr: 0.00
+
+Itr: 1, Added to OPEN - Min/Max Heur(PathCost): 36.51(2.00)/42.75(2.00) 
+Times - pop: 0.00, expand: 0.00, check: 0.00, heur: 0.00, add: 0.00, itr: 0.00
+
+Itr: 2, Added to OPEN - Min/Max Heur(PathCost): 35.60(3.00)/44.09(3.00) 
+Times - pop: 0.00, expand: 0.00, check: 0.00, heur: 0.00, add: 0.00, itr: 0.00
+
+Itr: 3, Added to OPEN - Min/Max Heur(PathCost): 34.61(4.00)/44.70(4.00) 
+Times - pop: 0.00, expand: 0.00, check: 0.00, heur: 0.00, add: 0.00, itr: 0.00
+
+Itr: 4, Added to OPEN - Min/Max Heur(PathCost): 33.79(5.00)/45.42(5.00) 
+Times - pop: 0.00, expand: 0.00, check: 0.00, heur: 0.00, add: 0.00, itr: 0.01
+
+Itr: 5, Added to OPEN - Min/Max Heur(PathCost): 32.65(6.00)/46.18(6.00) 
+Times - pop: 0.00, expand: 0.00, check: 0.00, heur: 0.01, add: 0.00, itr: 0.01
+
+Itr: 6, Added to OPEN - Min/Max Heur(PathCost): 31.43(7.00)/47.25(7.00) 
+Times - pop: 0.00, expand: 0.00, check: 0.00, heur: 0.01, add: 0.00, itr: 0.02
+
+Itr: 7, Added to OPEN - Min/Max Heur(PathCost): 30.37(8.00)/49.22(8.00) 
+Times - pop: 0.00, expand: 0.01, check: 0.01, heur: 0.01, add: 0.00, itr: 0.03
+
+Itr: 8, Added to OPEN - Min/Max Heur(PathCost): 29.65(9.00)/50.36(9.00) 
+Times - pop: 0.00, expand: 0.02, check: 0.02, heur: 0.03, add: 0.00, itr: 0.06
+
+Itr: 9, Added to OPEN - Min/Max Heur(PathCost): 28.59(10.00)/51.57(10.00) 
+Times - pop: 0.00, expand: 0.03, check: 0.04, heur: 0.05, add: 0.00, itr: 0.13
+
+Itr: 10, Added to OPEN - Min/Max Heur(PathCost): 27.50(11.00)/53.41(11.00) 
+Times - pop: 0.00, expand: 0.08, check: 0.09, heur: 0.10, add: 0.00, itr: 0.27
+
+Itr: 11, Added to OPEN - Min/Max Heur(PathCost): 26.08(12.00)/54.41(12.00) 
+Times - pop: 0.00, expand: 0.15, check: 0.18, heur: 0.18, add: 0.01, itr: 0.52
+
+Itr: 12, Added to OPEN - Min/Max Heur(PathCost): 25.08(13.00)/54.93(13.00) 
+Times - pop: 0.01, expand: 0.34, check: 0.36, heur: 0.35, add: 0.06, itr: 1.12
+
+Itr: 13, Added to OPEN - Min/Max Heur(PathCost): 24.34(14.00)/55.74(14.00) 
+Times - pop: 0.02, expand: 0.74, check: 0.72, heur: 0.71, add: 0.02, itr: 2.21
+
+Itr: 14, Added to OPEN - Min/Max Heur(PathCost): 23.24(15.00)/47.15(15.00) 
+Times - pop: 0.03, expand: 0.79, check: 0.74, heur: 0.73, add: 0.03, itr: 2.32
+
+Itr: 15, Added to OPEN - Min/Max Heur(PathCost): 22.54(16.00)/44.24(16.00) 
+Times - pop: 0.04, expand: 0.68, check: 0.73, heur: 0.73, add: 0.04, itr: 2.22
+
+Itr: 16, Added to OPEN - Min/Max Heur(PathCost): 21.55(17.00)/42.58(17.00) 
+Times - pop: 0.04, expand: 0.71, check: 0.73, heur: 0.72, add: 0.04, itr: 2.23
+
+Itr: 17, Added to OPEN - Min/Max Heur(PathCost): 20.73(18.00)/41.79(18.00) 
+Times - pop: 0.04, expand: 0.75, check: 0.72, heur: 0.72, add: 0.04, itr: 2.27
+
+Itr: 18, Added to OPEN - Min/Max Heur(PathCost): 19.44(19.00)/40.04(19.00) 
+Times - pop: 0.04, expand: 0.81, check: 0.73, heur: 0.72, add: 0.04, itr: 2.34
+
+Itr: 19, Added to OPEN - Min/Max Heur(PathCost): 18.15(20.00)/39.29(20.00) 
+Times - pop: 0.04, expand: 0.86, check: 0.74, heur: 0.72, add: 0.04, itr: 2.40
+
+Itr: 20, Added to OPEN - Min/Max Heur(PathCost): 17.33(21.00)/37.17(21.00) 
+Times - pop: 0.04, expand: 0.92, check: 0.75, heur: 0.72, add: 0.04, itr: 2.48
+
+Itr: 21, Added to OPEN - Min/Max Heur(PathCost): 16.23(22.00)/35.83(22.00) 
+Times - pop: 0.04, expand: 0.53, check: 0.73, heur: 0.73, add: 0.04, itr: 2.07
+
+Itr: 22, Added to OPEN - Min/Max Heur(PathCost): 15.01(23.00)/34.97(23.00) 
+Times - pop: 0.04, expand: 1.01, check: 0.73, heur: 0.73, add: 0.04, itr: 2.55
+
+Itr: 23, Added to OPEN - Min/Max Heur(PathCost): 13.91(24.00)/33.89(24.00) 
+Times - pop: 0.04, expand: 0.53, check: 0.73, heur: 0.73, add: 0.04, itr: 2.06
+
+Itr: 24, Added to OPEN - Min/Max Heur(PathCost): 12.92(25.00)/32.11(25.00) 
+Times - pop: 0.04, expand: 1.10, check: 0.74, heur: 0.73, add: 0.04, itr: 2.65
+
+Itr: 25, Added to OPEN - Min/Max Heur(PathCost): 11.91(26.00)/31.34(26.00) 
+Times - pop: 0.04, expand: 0.53, check: 0.74, heur: 0.73, add: 0.04, itr: 2.08
+
+Itr: 26, Added to OPEN - Min/Max Heur(PathCost): 10.95(27.00)/30.03(27.00) 
+Times - pop: 0.05, expand: 0.56, check: 0.74, heur: 0.73, add: 0.04, itr: 2.12
+
+Itr: 27, Added to OPEN - Min/Max Heur(PathCost): 10.04(28.00)/29.39(28.00) 
+Times - pop: 0.04, expand: 1.23, check: 0.75, heur: 0.73, add: 0.04, itr: 2.79
+
+Itr: 28, Added to OPEN - Min/Max Heur(PathCost): 9.08(29.00)/28.78(28.00) 
+Times - pop: 0.05, expand: 0.54, check: 0.73, heur: 0.73, add: 0.04, itr: 2.09
+
+Itr: 29, Added to OPEN - Min/Max Heur(PathCost): 8.28(30.00)/28.46(28.00) 
+Times - pop: 0.04, expand: 0.54, check: 0.77, heur: 0.73, add: 0.04, itr: 2.12
+
+Itr: 30, Added to OPEN - Min/Max Heur(PathCost): 7.19(31.00)/29.72(28.00) 
+Times - pop: 0.04, expand: 1.37, check: 0.75, heur: 0.73, add: 0.04, itr: 2.93
+
+Itr: 31, Added to OPEN - Min/Max Heur(PathCost): 5.94(32.00)/27.17(29.00) 
+Times - pop: 0.04, expand: 0.53, check: 0.76, heur: 0.73, add: 0.04, itr: 2.10
+
+Itr: 32, Added to OPEN - Min/Max Heur(PathCost): 4.99(33.00)/25.77(32.00) 
+Times - pop: 0.05, expand: 0.53, check: 0.77, heur: 0.73, add: 0.04, itr: 2.11
+
+Itr: 33, Added to OPEN - Min/Max Heur(PathCost): 4.02(34.00)/24.56(31.00) 
+Times - pop: 0.04, expand: 1.53, check: 0.76, heur: 0.73, add: 0.04, itr: 3.10
+
+Itr: 34, Added to OPEN - Min/Max Heur(PathCost): 3.08(35.00)/23.30(35.00) 
+Times - pop: 0.04, expand: 0.53, check: 0.76, heur: 0.73, add: 0.03, itr: 2.10
+
+Itr: 35, Added to OPEN - Min/Max Heur(PathCost): 2.08(36.00)/22.46(36.00) 
+Times - pop: 0.04, expand: 0.54, check: 0.76, heur: 0.73, add: 0.04, itr: 2.11
+
+Itr: 36, Added to OPEN - Min/Max Heur(PathCost): 1.01(37.00)/21.47(37.00) 
+Times - pop: 0.04, expand: 0.53, check: 0.76, heur: 0.73, add: 0.04, itr: 2.10
+
+Itr: 37, Added to OPEN - Min/Max Heur(PathCost): 0.09(38.00)/22.60(36.00) 
+Times - pop: 0.05, expand: 1.73, check: 0.77, heur: 0.73, add: 0.03, itr: 3.31
+
+Itr: 38, Added to OPEN - Min/Max Heur(PathCost): 0.09(39.00)/24.25(34.00) 
+Times - pop: 0.05, expand: 0.53, check: 0.78, heur: 0.73, add: 0.03, itr: 2.11
+

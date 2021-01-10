@@ -1,5 +1,7 @@
 from typing import List, Tuple, Dict, Callable, Optional, Any
 from environments.environment_abstract import Environment, State
+from environments.visualizer import render_path
+from environments.loggers import logger_main
 import numpy as np
 from heapq import heappush, heappop
 from subprocess import Popen, PIPE
@@ -444,12 +446,14 @@ def bwas_python(args, env: Environment, states: List[State]):
 
         # print to screen
         timing_str = ", ".join(["%s: %.2f" % (key, val) for key, val in astar.timings.items()])
-        print("Times - %s, num_itrs: %i" % (timing_str, num_itrs))
+        logger_main.info("Times - %s, num_itrs: %i" % (timing_str, num_itrs))
 
-        print("State: %i, SolnCost: %.2f, # Moves: %i, "
-              "# Nodes Gen: %s, Time: %.2f" % (state_idx, path_cost, len(soln),
-                                               format(num_nodes_gen_idx, ","),
-                                               solve_time))
+        logger_main.info("State: %i, SolnCost: %.2f, # Moves: %i, "
+                         "# Nodes Gen: %s, Time: %.2f" % (state_idx, path_cost, len(soln),
+                                                          format(num_nodes_gen_idx, ","),
+                                                          solve_time))
+        # rendering solution
+        render_path(path, soln)
 
     return solns, paths, times, num_nodes_gen
 
@@ -593,11 +597,11 @@ def cpp_listener(sock, args, env: Environment, state_dim: int, heur_fn_i_q, heur
             num_bytes_seen = num_bytes_seen + len(con_rec)
 
         states_np = np.frombuffer(data_rec, dtype=env.dtype)
-        states_np = states_np.reshape(int(len(states_np)/state_dim), state_dim)
+        states_np = states_np.reshape(int(len(states_np) / state_dim), state_dim)
 
         # Get nnet representation of state
         if args.env.upper() == "CUBE3":
-            states_np = states_np/9
+            states_np = states_np / 9
             states_np = states_np.astype(env.dtype)
             states_nnet: List[np.ndarray] = [states_np]
         elif args.env.upper() in ["PUZZLE15", "PUZZLE24", "PUZZLE35", "PUZZLE48"]:
@@ -628,7 +632,7 @@ def heuristic_fn_par(states_nnet: List[np.ndarray], heur_fn_i_q, heur_fn_o_qs):
         heur_fn_i_q.put((idx, states_nnet_idx))
 
     # Check until all data is obtaied
-    results = [None]*len(parallel_nums)
+    results = [None] * len(parallel_nums)
     for idx in parallel_nums:
         results[idx] = heur_fn_o_qs[idx].get()
 
