@@ -26,24 +26,26 @@ class NPuzzleState(State):
         return np.array_equal(self.tiles, other.tiles)
 
 
-class NPuzzle(Environment):
+class NMPuzzle(Environment):
     moves: List[str] = ['U', 'D', 'L', 'R']
     moves_rev: List[str] = ['D', 'U', 'R', 'L']
 
-    def __init__(self, dim: int):
+    def __init__(self, dim_r: int, dim_c: int = 1):
         super().__init__()
 
-        self.dim: int = dim
-        if self.dim <= 15:
+        self.dim_r: int = dim_r
+        if self.dim_r <= 15:
             self.dtype = np.uint8
         else:
             self.dtype = np.int
 
+        self.dim_c: int = dim_c  # TODO espandere a 2 dimensioni
+
         # Solved state
-        self.goal_tiles: np.ndarray = np.concatenate((np.arange(1, self.dim * self.dim), [0])).astype(self.dtype)
+        self.goal_tiles: np.ndarray = np.concatenate((np.arange(1, self.dim_r * self.dim_r), [0])).astype(self.dtype)
 
         # Next state ops
-        self.swap_zero_idxs: np.ndarray = self._get_swap_zero_idxs(self.dim)
+        self.swap_zero_idxs: np.ndarray = self._get_swap_zero_idxs(self.dim_r)
 
     def next_state(self, states: List[NPuzzleState], action: int) -> Tuple[List[NPuzzleState], List[float]]:
         # initialize
@@ -96,8 +98,8 @@ class NPuzzle(Environment):
         return len(self.moves)
 
     def get_nnet_model(self) -> nn.Module:
-        state_dim: int = self.dim * self.dim
-        nnet = ResnetModel(state_dim, self.dim ** 2, 5000, 1000, 4, 1, True)
+        state_dim: int = self.dim_r * self.dim_r
+        nnet = ResnetModel(state_dim, self.dim_r ** 2, 5000, 1000, 4, 1, True)
 
         return nnet
 
@@ -176,8 +178,8 @@ class NPuzzle(Environment):
         return states_exp, tc_l
 
     def _get_swap_zero_idxs(self, n: int) -> np.ndarray:
-        swap_zero_idxs: np.ndarray = np.zeros((n ** 2, len(NPuzzle.moves)), dtype=self.dtype)
-        for moveIdx, move in enumerate(NPuzzle.moves):
+        swap_zero_idxs: np.ndarray = np.zeros((n ** 2, len(NMPuzzle.moves)), dtype=self.dtype)
+        for moveIdx, move in enumerate(NMPuzzle.moves):
             for i in range(n):
                 for j in range(n):
                     z_idx = np.ravel_multi_index((i, j), (n, n))

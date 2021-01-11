@@ -337,6 +337,7 @@ class AStar:
     def get_num_nodes_generated(self, inst_idx: int) -> int:
         return self.instances[inst_idx].num_nodes_generated
 
+
     def get_popped_nodes(self) -> List[List[Node]]:
         popped_nodes_all: List[List[Node]] = [instance.popped_nodes for instance in self.instances]
         return popped_nodes_all
