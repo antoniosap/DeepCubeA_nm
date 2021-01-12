@@ -37,6 +37,9 @@ There are pre-computed results of A* search in the `results/` directory.
 ###### Compare to shortest path
 `python scripts/compare_solutions.py --soln1 data/puzzle15/test/data_0.pkl --soln2 results/puzzle15/results.pkl`
 
+###### Useful commands
+`python scripts/generate_dataset.py --env PUZZLE4x8 --back_max 40 --data_dir puzzle4x8`
+
 ### Improving Results
 During approximate value iteration (AVI), one can get better results by increasing the batch size (`--batch_size`) and number of states per update (`--states_per_update`).
 Decreasing the threshold before the target network is updated (`--loss_thresh`) can also help.
@@ -79,3 +82,4 @@ during A* search.
 If you are not able to get the C++ version working on your computer, you can change the `--language` switch for
 `search_methods/astar.py` from `--language cpp` to `--language python`.
 Note that the C++ version is generally faster.
+

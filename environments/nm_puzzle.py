@@ -9,7 +9,7 @@ from .visualizer import render
 import logging
 
 
-class NPuzzleState(State):
+class NMPuzzleState(State):
     __slots__ = ['tiles', 'hash']
 
     def __init__(self, tiles: np.ndarray):
@@ -26,26 +26,32 @@ class NPuzzleState(State):
         return np.array_equal(self.tiles, other.tiles)
 
 
-class NPuzzle(Environment):
+class NMPuzzle(Environment):
     moves: List[str] = ['U', 'D', 'L', 'R']
     moves_rev: List[str] = ['D', 'U', 'R', 'L']
 
-    def __init__(self, dim: int):
+    def __init__(self, dim_r: int, dim_c: int = None):
         super().__init__()
 
-        self.dim: int = dim
-        if self.dim <= 15:
+        self.dim_r: int = dim_r
+        if self.dim_r <= 15:
             self.dtype = np.uint8
         else:
             self.dtype = np.int
 
+        self.dim_c: int = dim_c
+
         # Solved state
-        self.goal_tiles: np.ndarray = np.concatenate((np.arange(1, self.dim * self.dim), [0])).astype(self.dtype)
+        if dim_c is None:
+            self.goal_tiles: np.ndarray = np.concatenate((np.arange(1, self.dim_r * self.dim_r), [0])).astype(self.dtype)
+        else:
+            self.goal_tiles: np.ndarray = np.concatenate((np.arange(1, self.dim_r * self.dim_c), [0])).astype(self.dtype)
 
         # Next state ops
-        self.swap_zero_idxs: np.ndarray = self._get_swap_zero_idxs(self.dim)
+        # TODO modificare
+        self.swap_zero_idxs: np.ndarray = self._get_swap_zero_idxs(self.dim_r)
 
-    def next_state(self, states: List[NPuzzleState], action: int) -> Tuple[List[NPuzzleState], List[float]]:
+    def next_state(self, states: List[NMPuzzleState], action: int) -> Tuple[List[NMPuzzleState], List[float]]:
         # initialize
         states_np = np.stack([x.tiles for x in states], axis=0)
         states_next_np: np.ndarray = states_np.copy()
@@ -58,34 +64,33 @@ class NPuzzle(Environment):
         states_next_np, _, transition_costs = self._move_np(states_np, z_idxs, action)
 
         # make states
-        states_next: List[NPuzzleState] = [NPuzzleState(x) for x in list(states_next_np)]
+        states_next: List[NMPuzzleState] = [NMPuzzleState(x) for x in list(states_next_np)]
 
         return states_next, transition_costs
 
-    def prev_state(self, states: List[NPuzzleState], action: int) -> List[NPuzzleState]:
+    def prev_state(self, states: List[NMPuzzleState], action: int) -> List[NMPuzzleState]:
         move: str = self.moves[action]
         move_rev_idx: int = np.where(np.array(self.moves_rev) == np.array(move))[0][0]
 
         return self.next_state(states, move_rev_idx)[0]
 
-    def generate_goal_states(self, num_states: int, np_format: bool = False) -> Union[List[NPuzzleState], np.ndarray]:
+    def generate_goal_states(self, num_states: int, np_format: bool = False) -> Union[List[NMPuzzleState], np.ndarray]:
         if np_format:
             goal_np: np.ndarray = np.expand_dims(self.goal_tiles.copy(), 0)
             solved_states: np.ndarray = np.repeat(goal_np, num_states, axis=0)
         else:
-            solved_states: List[NPuzzleState] = [NPuzzleState(self.goal_tiles.copy()) for _ in range(num_states)]
+            solved_states: List[NMPuzzleState] = [NMPuzzleState(self.goal_tiles.copy()) for _ in range(num_states)]
 
         return solved_states
 
-    def is_solved(self, states: List[NPuzzleState]) -> np.ndarray:
+    def is_solved(self, states: List[NMPuzzleState]) -> np.ndarray:
         states_np = np.stack([state.tiles for state in states], axis=0)
         is_equal = np.equal(states_np, np.expand_dims(self.goal_tiles, 0))
         solved = np.all(is_equal, axis=1)
 
         return np.all(is_equal, axis=1)
 
-
-    def state_to_nnet_input(self, states: List[NPuzzleState]) -> List[np.ndarray]:
+    def state_to_nnet_input(self, states: List[NMPuzzleState]) -> List[np.ndarray]:
         states_np = np.stack([x.tiles for x in states], axis=0)
 
         representation = [states_np.astype(self.dtype)]
@@ -96,12 +101,12 @@ class NPuzzle(Environment):
         return len(self.moves)
 
     def get_nnet_model(self) -> nn.Module:
-        state_dim: int = self.dim * self.dim
-        nnet = ResnetModel(state_dim, self.dim ** 2, 5000, 1000, 4, 1, True)
+        state_dim: int = self.dim_r * self.dim_r
+        nnet = ResnetModel(state_dim, self.dim_r ** 2, 5000, 1000, 4, 1, True)
 
         return nnet
 
-    def generate_states(self, num_states: int, backwards_range: Tuple[int, int]) -> Tuple[List[NPuzzleState],
+    def generate_states(self, num_states: int, backwards_range: Tuple[int, int]) -> Tuple[List[NMPuzzleState],
                                                                                           List[int]]:
         assert (num_states > 0)
         assert (backwards_range[0] >= 0)
@@ -133,7 +138,7 @@ class NPuzzle(Environment):
 
             num_back_moves[idxs] = num_back_moves[idxs] + 1
 
-        states: List[NPuzzleState] = [NPuzzleState(x) for x in list(states_np)]
+        states: List[NMPuzzleState] = [NMPuzzleState(x) for x in list(states_np)]
 
         return states, scramble_nums.tolist()
 
@@ -168,7 +173,7 @@ class NPuzzle(Environment):
             tc[:, move_idx] = np.array(tc_move)
 
             for idx in range(len(states)):
-                states_exp[idx].append(NPuzzleState(states_next_np[idx]))
+                states_exp[idx].append(NMPuzzleState(states_next_np[idx]))
 
         # make lists
         tc_l: List[np.ndarray] = [tc[i] for i in range(num_states)]
@@ -176,8 +181,8 @@ class NPuzzle(Environment):
         return states_exp, tc_l
 
     def _get_swap_zero_idxs(self, n: int) -> np.ndarray:
-        swap_zero_idxs: np.ndarray = np.zeros((n ** 2, len(NPuzzle.moves)), dtype=self.dtype)
-        for moveIdx, move in enumerate(NPuzzle.moves):
+        swap_zero_idxs: np.ndarray = np.zeros((n ** 2, len(NMPuzzle.moves)), dtype=self.dtype)
+        for moveIdx, move in enumerate(NMPuzzle.moves):
             for i in range(n):
                 for j in range(n):
                     z_idx = np.ravel_multi_index((i, j), (n, n))
