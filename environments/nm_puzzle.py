@@ -44,15 +44,16 @@ class NMPuzzle(Environment):
         # Solved state
         if dim_c is None:
             self.goal_tiles: np.ndarray = np.concatenate((np.arange(1, self.dim_r * self.dim_r), [0])).astype(self.dtype)
+            # Next state ops
+            self.swap_zero_idxs: np.ndarray = self._get_swap_zero_idxs_n(self.dim_r)
         else:
             self.goal_tiles: np.ndarray = np.concatenate((np.arange(1, self.dim_r * self.dim_c), [0])).astype(self.dtype)
-
-        # Next state ops
-        # TODO modificare
-        self.swap_zero_idxs: np.ndarray = self._get_swap_zero_idxs(self.dim_r)
+            # Next state ops
+            self.swap_zero_idxs: np.ndarray = self._get_swap_zero_idxs_nm(self.dim_r, self.dim_c)
 
     def next_state(self, states: List[NMPuzzleState], action: int) -> Tuple[List[NMPuzzleState], List[float]]:
         # initialize
+
         states_np = np.stack([x.tiles for x in states], axis=0)
         states_next_np: np.ndarray = states_np.copy()
 
@@ -180,7 +181,7 @@ class NMPuzzle(Environment):
 
         return states_exp, tc_l
 
-    def _get_swap_zero_idxs(self, n: int) -> np.ndarray:
+    def _get_swap_zero_idxs_n(self, n: int) -> np.ndarray:
         swap_zero_idxs: np.ndarray = np.zeros((n ** 2, len(NMPuzzle.moves)), dtype=self.dtype)
         for moveIdx, move in enumerate(NMPuzzle.moves):
             for i in range(n):
@@ -217,6 +218,48 @@ class NMPuzzle(Environment):
                             swap_j = j - 1
 
                         swap_zero_idxs[z_idx, moveIdx] = np.ravel_multi_index((swap_i, swap_j), (n, n))
+                    else:
+                        swap_zero_idxs[z_idx, moveIdx] = z_idx
+
+        return swap_zero_idxs
+
+    def _get_swap_zero_idxs_nm(self, n: int, m: int) -> np.ndarray:
+        swap_zero_idxs: np.ndarray = np.zeros((n * m, len(NMPuzzle.moves)), dtype=self.dtype)
+        for moveIdx, move in enumerate(NMPuzzle.moves):
+            for i in range(n):
+                for j in range(m):
+                    z_idx = np.ravel_multi_index((i, j), (n, m))
+
+                    state = np.ones((n, m), dtype=np.int)
+                    state[i, j] = 0
+
+                    is_eligible: bool = False
+                    if move == 'U':
+                        is_eligible = i < (n - 1)
+                    elif move == 'D':
+                        is_eligible = i > 0
+                    elif move == 'L':
+                        is_eligible = j < (m - 1)
+                    elif move == 'R':
+                        is_eligible = j > 0
+
+                    if is_eligible:
+                        swap_i: int = -1
+                        swap_j: int = -1
+                        if move == 'U':
+                            swap_i = i + 1
+                            swap_j = j
+                        elif move == 'D':
+                            swap_i = i - 1
+                            swap_j = j
+                        elif move == 'L':
+                            swap_i = i
+                            swap_j = j + 1
+                        elif move == 'R':
+                            swap_i = i
+                            swap_j = j - 1
+
+                        swap_zero_idxs[z_idx, moveIdx] = np.ravel_multi_index((swap_i, swap_j), (n, m))
                     else:
                         swap_zero_idxs[z_idx, moveIdx] = z_idx
 
