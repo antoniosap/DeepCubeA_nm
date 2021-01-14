@@ -102,8 +102,8 @@ class NMPuzzle(Environment):
         return len(self.moves)
 
     def get_nnet_model(self) -> nn.Module:
-        state_dim: int = self.dim_r * self.dim_r
-        nnet = ResnetModel(state_dim, self.dim_r ** 2, 5000, 1000, 4, 1, True)
+        state_dim: int = self.dim_r * self.dim_c
+        nnet = ResnetModel(state_dim, self.dim_r * self.dim_c, 5000, 1000, 4, 1, True)
 
         return nnet
 

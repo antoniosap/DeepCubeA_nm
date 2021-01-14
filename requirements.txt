@@ -1,4 +1,6 @@
 conda install matplotlib
 conda install numpy
 conda install -c pytorch torchvision cudatoolkit pytorch
-
+conda install cython
+# extra
+conda install pandas
