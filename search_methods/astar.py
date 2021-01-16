@@ -454,7 +454,7 @@ def bwas_python(args, env: Environment, states: List[State]):
                                                           format(num_nodes_gen_idx, ","),
                                                           solve_time))
         # rendering solution
-        render_path(path, soln)
+        render_path(path, soln, size_rows=env.dim_r, size_cols=env.dim_c)
 
     return solns, paths, times, num_nodes_gen
 
