@@ -4,6 +4,7 @@
 from typing import List
 import numpy as np
 from .loggers import logger_main
+from environments.environment_abstract import Environment, State
 
 pieces = None
 
