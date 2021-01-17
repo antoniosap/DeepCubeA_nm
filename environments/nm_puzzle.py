@@ -1,5 +1,6 @@
 from typing import List, Tuple, Union
 import numpy as np
+import ast
 import torch.nn as nn
 
 from utils.pytorch_models import ResnetModel
@@ -288,13 +289,10 @@ class NMPuzzle(Environment):
 
     @staticmethod
     def entry_user_state() -> List[State]:
-        # sequenza critica: distanza 24 esito: non risolta in 48h da IDA*
-        init_state = (
-            (1, 2, 11, 3, 4, 6, 16, 7),
-            (10, 25, 13, 12, 5, 0, 14, 8),
-            (9, 20, 18, 27, 22, 23, 15, 24),
-            (17, 26, 19, 28, 21, 29, 30, 31),
-        )
+        # example
+        # [[ 1,  2, 11,  3,  4,  6, 16,  7],[10, 25, 13, 12,  5,  0, 14,  8],[ 9, 20, 18, 27, 22, 23, 15, 24],[17, 26, 19, 28, 21, 29, 30, 31]]
+        entry = input('entry board as [[...],[...],...] 4 rows, 8 colums: ')
+        init_state = ast.literal_eval(entry)
         return [NMPuzzleState(NMPuzzle.load_state(init_state))]
 
 # ecco la soluzione:
