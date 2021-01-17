@@ -1,4 +1,4 @@
-# DeepCubeA
+# DeepCubeA + addendum
 This is the code for [DeepCubeA](https://www.ics.uci.edu/~fagostin/assets/files/SolvingTheRubiksCubeWithDeepReinforcementLearningAndSearch_Final.pdf) for python3 and PyTorch.
 The original python2, tensorflow code can be found on [CodeOcean](https://codeocean.com/capsule/5723040/tree/v1).
 
@@ -6,6 +6,25 @@ This currently contains the code for using DeepCubeA to solve the Rubik's cube, 
 You can also adapt this code to use DeepCubeA to solve new problems that you might be working on.
 
 For any issues, please contact Forest Agostinelli (fagostin@uci.edu)
+
+# addendum: puzzle n x m
+useful commands:
+
+generate dataset
+
+`python scripts/generate_dataset.py --env PUZZLE4x8 --back_max 40 --data_dir data/puzzle4x8/test`
+
+train dataset
+
+`python ctg_approx/avi.py --env PUZZLE4x8 --back_max 40 --batch_size 1000 --nnet_name puzzle4x8`
+
+test dataset
+
+`python search_methods/astar.py --states data/puzzle4x8/test/data_85.pkl --model saved_models/puzzle4x8/current/ --env puzzle4x8 --weight 0.8 --batch_size 10 --results_dir results/puzzle4x8/test --language python --nnet_batch_size 10000 --verbose`
+
+solve from user console
+
+`python search_methods/astar.py --states data/puzzle4x8/test/data_85.pkl --model saved_models/puzzle4x8/current/ --env puzzle4x8 --weight 0.8 --batch_size 10 --results_dir results/puzzle4x8/test --language python --nnet_batch_size 10000 --verbose --user_entry`
 
 # Setup
 For required python packages, please see requirements.txt.

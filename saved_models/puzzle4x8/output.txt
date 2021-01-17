@@ -1,0 +1,40 @@
+device: cpu, devices: [], on_gpu: False
+Updating cost-to-go with value iteration
+100.00% (Total time: 0.49)
+Cost-to-go (mean/min/max): 0.93/0.00/1.00
+Training model for update number 0 for 1 iterations
+device: cuda:0, devices: [0], on_gpu: True
+Updating cost-to-go with value iteration
+100.00% (Total time: 0.47)
+Cost-to-go (mean/min/max): 0.89/0.00/1.00
+Training model for update number 0 for 1 iterations
+device: cuda:0, devices: [0], on_gpu: True
+Updating cost-to-go with value iteration
+100.00% (Total time: 0.46)
+Cost-to-go (mean/min/max): 0.90/0.00/1.00
+Training model for update number 0 for 1 iterations
+device: cuda:0, devices: [0], on_gpu: True
+Updating cost-to-go with value iteration
+100.00% (Total time: 0.45)
+Cost-to-go (mean/min/max): 0.79/0.00/1.00
+Training model for update number 0 for 1 iterations
+device: cuda:0, devices: [0], on_gpu: True
+Updating cost-to-go with value iteration
+100.00% (Total time: 0.45)
+Cost-to-go (mean/min/max): 0.64/0.00/1.00
+Training model for update number 0 for 1 iterations
+device: cuda:0, devices: [0], on_gpu: True
+Updating cost-to-go with value iteration
+100.00% (Total time: 0.47)
+Cost-to-go (mean/min/max): 0.92/0.00/1.00
+Training model for update number 0 for 1 iterations
+device: cuda:0, devices: [0], on_gpu: True
+Updating cost-to-go with value iteration
+100.00% (Total time: 0.46)
+Cost-to-go (mean/min/max): 0.90/0.00/1.00
+Training model for update number 0 for 1 iterations
+device: cuda:0, devices: [0], on_gpu: True
+Updating cost-to-go with value iteration
+100.00% (Total time: 0.47)
+Cost-to-go (mean/min/max): 0.92/0.00/1.00
+Training model for update number 0 for 1 iterations
