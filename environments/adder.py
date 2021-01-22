@@ -3,6 +3,8 @@
 #
 # https://theorycircuit.com/full-adder-circuit-diagram/
 # https://en.wikipedia.org/wiki/Logic_gate
+# https://github.com/scale-lab/BLASYS
+# https://arxiv.org/pdf/1902.00478.pdf
 #
 # sintetizzare una rete combinatoria per un addizionatore N cifre binarie
 #
