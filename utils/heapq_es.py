@@ -6,6 +6,8 @@
 # https://elasticsearch-dsl.readthedocs.io
 # https://coralogix.com/log-analytics-blog/42-elasticsearch-query-examples-hands-on-tutorial/
 #
+# TROPPO LENTO L'INSERIMENTO RECORDS
+#
 import elasticsearch as es
 from elasticsearch_dsl import Search
 import pickle
@@ -21,7 +23,7 @@ class HeapElastic:
         try:
             self.ret = self.ind.create(self.name, body={
                 "settings": {
-                    "number_of_shards": 1,
+                    "number_of_shards": 4,
                     "number_of_replicas": 0
                 },
                 "mappings": {
@@ -59,8 +61,8 @@ if __name__ == "__main__":
 
     h = HeapElastic()
     # print(h.ret)
-    for i in range(30000):
-        res = h.heappush(cost=random.uniform(0, 1), count=i, data='fff')
+    for i in range(1000):
+        res = h.heappush(cost=random.uniform(0, 1), count=i, data='new node')
         print('heappush: ', i)
     min_cost, count, node = h.heappop()
     print(min_cost, count, node)
