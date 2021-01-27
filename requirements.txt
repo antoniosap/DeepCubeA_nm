@@ -15,3 +15,8 @@ pip install elasticsearch-dsl>=7.3.0,<8.0.0
 # kibana
 # docker pull docker.elastic.co/kibana/kibana:7.10.2
 # ...
+#
+conda install sqlalchemy
+conda install asyncpg
+conda install psycopg2
+# pip install --pre SQLAlchemy>=1.4.0
