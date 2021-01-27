@@ -15,12 +15,13 @@ import pickle
 import base64
 from sqlalchemy import create_engine
 from sqlalchemy import Table, Column, Integer, String, Float, Binary
-from sqlalchemy.schema import MetaData, Index, DropTable
-from sqlalchemy.sql import select
+from sqlalchemy.schema import MetaData, Index
+from sqlalchemy.sql import select, delete
+from sqlalchemy.sql.functions import min
 
 
 class HeapSQL:
-    def __init__(self):
+    def __init__(self, delete_all=True):
         self.name = 'priority_queue'
         self.cli = create_engine("postgresql://postgres:aldebaran@172.17.0.3/heapq", echo=False)
         self.conn = self.cli.connect()
@@ -34,6 +35,8 @@ class HeapSQL:
             Column('data', Binary),
             Index('idx_key', 'instance', 'cost')
         )
+        if delete_all:
+            self.delete()
         self.meta.create_all(self.cli)
         # try:
         # except es.exceptions.RequestError as e:
@@ -53,15 +56,19 @@ class HeapSQL:
 
     def heappop(self, instance):
         """Pop the smallest item off the heap, maintaining the heap invariant."""
-        row = self.conn.execute(select([self.heapq]).where(self.heapq.c.instance==instance)).fetchone()
-        id = row[self.heapq.c.id]
-        return row[self.heapq.c.cost], row[self.heapq.c.count], 0
-
-        #s = Search(using=self.cli, index=self.name).sort('cost')
-        #s.aggs.metric("min_cost", "min", field="cost")
-        #response = s.execute()
-        #return response.aggregations.min_cost.value, response.hits[0].count, \
-        #       pickle.loads(base64.b64decode(response.hits[0].node.encode('UTF-8')), encoding='UTF-8')
+        row = self.conn.execute(select([self.heapq.c.id,
+                                        min(self.heapq.c.cost).label("min_cost"),
+                                        self.heapq.c.count,
+                                        self.heapq.c.data])
+                                .where(self.heapq.c.instance == instance)
+                                .group_by(self.heapq.c.id,
+                                          self.heapq.c.count,
+                                          self.heapq.c.data)).fetchone()
+        if row is not None:
+            self.conn.execute(delete(self.heapq).where(self.heapq.c.id == row.id))
+            return row.min_cost, row.count, pickle.loads(row.data)
+        else:
+            return None, None, None
 
 
 if __name__ == "__main__":
