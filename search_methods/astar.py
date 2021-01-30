@@ -5,6 +5,7 @@ from environments.visualizer import render_path
 from environments.loggers import logger_main
 import numpy as np
 from heapq import heappush, heappop
+from utils.heapq_sql import HeapSQL
 from subprocess import Popen, PIPE
 
 from argparse import ArgumentParser
@@ -52,8 +53,12 @@ OpenSetElem = Tuple[float, int, Node]
 
 class Instance:
 
-    def __init__(self, root_node: Node):
-        self.open_set: List[OpenSetElem] = []
+    def __init__(self, root_node: Node, enableSQL=True):
+        self.enableSQL = enableSQL
+        if enableSQL:
+            self.open_set: HeapSQL = HeapSQL()
+        else:
+            self.open_set: List[OpenSetElem] = []
         self.heappush_count: int = 0
         self.closed_dict: Dict[State, float] = dict()
         self.popped_nodes: List[Node] = []
@@ -66,13 +71,19 @@ class Instance:
 
     def push_to_open(self, nodes: List[Node]):
         for node in nodes:
-            heappush(self.open_set, (node.cost, self.heappush_count, node))
+            if self.enableSQL:
+                self.open_set.heappush(node.cost, self.heappush_count, node)
+            else:
+                heappush(self.open_set, (node.cost, self.heappush_count, node))
             self.heappush_count += 1
 
     def pop_from_open(self, num_nodes: int) -> List[Node]:
-        num_to_pop: int = min(num_nodes, len(self.open_set))
-
-        popped_nodes = [heappop(self.open_set)[2] for _ in range(num_to_pop)]
+        if self.enableSQL:
+            num_to_pop: int = min(num_nodes, self.open_set.heaplen())
+            popped_nodes = [self.open_set.heappop()[2] for _ in range(num_to_pop)]
+        else:
+            num_to_pop: int = min(num_nodes, len(self.open_set))
+            popped_nodes = [heappop(self.open_set)[2] for _ in range(num_to_pop)]
         self.goal_nodes.extend([node for node in popped_nodes if node.is_solved])
         self.popped_nodes.extend(popped_nodes)
 
