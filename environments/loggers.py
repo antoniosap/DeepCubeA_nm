@@ -21,8 +21,8 @@ logger_main.disabled = LOGGER_DISABLED['main']
 #logger_mcts = setup_logger('logger_mcts', run_folder + 'logs/logger_mcts.log')
 #logger_mcts.disabled = LOGGER_DISABLED['mcts']
 
-#logger_tourney = setup_logger('logger_tourney', run_folder + 'logs/logger_tourney.log')
-#logger_tourney.disabled = LOGGER_DISABLED['tourney']
+logger_tourney = setup_logger('logger_tourney', run_folder + 'logs/logger_tourney.log')
+logger_tourney.disabled = LOGGER_DISABLED['tourney']
 
 logger_memory = setup_logger('logger_memory', run_folder + 'logs/logger_memory.log')
 logger_memory.disabled = LOGGER_DISABLED['memory']

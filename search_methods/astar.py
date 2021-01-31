@@ -1,12 +1,14 @@
 from typing import List, Tuple, Dict, Callable, Optional, Any
 from environments.environment_abstract import Environment, State
 from environments.nm_puzzle import NMPuzzle
-from environments.visualizer import render_path
-from environments.loggers import logger_main
+from environments.visualizer import render_path, render, reshape
+from environments.loggers import logger_main, logger_tourney
 import numpy as np
 from heapq import heappush, heappop
 from utils.heapq_sql import HeapSQL
 from subprocess import Popen, PIPE
+import psutil
+import gc
 
 from argparse import ArgumentParser
 import torch
@@ -53,7 +55,7 @@ OpenSetElem = Tuple[float, int, Node]
 
 class Instance:
 
-    def __init__(self, root_node: Node, enableSQL=True):
+    def __init__(self, root_node: Node, enableSQL=False):
         self.enableSQL = enableSQL
         if enableSQL:
             self.open_set: HeapSQL = HeapSQL()
@@ -435,15 +437,32 @@ def bwas_python(args, env: Environment, states: List[State]):
     paths: List[List[State]] = []
     times: List = []
     num_nodes_gen: List[int] = []
+    vm_memory: float = psutil.virtual_memory().percent
+    timeout: bool = False
 
     for state_idx, state in enumerate(states):
         start_time = time.time()
 
         num_itrs: int = 0
         astar = AStar([state], env, heuristic_fn, [args.weight])
-        while not min(astar.has_found_goal()):
+        while not timeout and not min(astar.has_found_goal()):
             astar.step(heuristic_fn, args.batch_size, verbose=args.verbose)
             num_itrs += 1
+            vm_memory = psutil.virtual_memory().percent
+            print(f"vm_memory: {vm_memory}")
+            if vm_memory > 80:
+                timeout = True
+                logger_main.info(f"TIMEOUT num_itrs: {num_itrs}")
+                bboard = str(reshape(state.tiles, env.dim_r, env.dim_c))\
+                    .replace('\n', ',').replace('  ',' ').replace(', ',',').replace(' ',', ').replace('[,','[')
+                logger_tourney.info(f"TIMEOUT Tiles: \n{bboard}")
+                render(state.tiles, env.dim_r, env.dim_c)
+
+        if timeout:
+            timeout = False
+            del astar
+            gc.collect()
+            continue
 
         path: List[State]
         soln: List[int]

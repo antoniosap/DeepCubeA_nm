@@ -20,3 +20,5 @@ conda install sqlalchemy
 conda install asyncpg
 conda install psycopg2
 # pip install --pre SQLAlchemy>=1.4.0
+# system usage
+conda install psutil

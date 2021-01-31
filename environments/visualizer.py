@@ -21,6 +21,8 @@ def load_pieces(size_rows: int, size_cols: int):
         pieces[str(i)] = "{:2d}".format(i)
     pieces[str(0)] = "  "
 
+def reshape(board: np.ndarray, size_rows: int, size_cols: int):
+    return np.reshape(board, (size_rows, size_cols))
 
 def render(board: np.ndarray, size_rows: int, size_cols: int):
     if pieces is None:
@@ -30,7 +32,6 @@ def render(board: np.ndarray, size_rows: int, size_cols: int):
     for r in range(size_rows):
         s = str([pieces[str(x)] for x in bboard[r]])
         logger_main.info([pieces[str(x)] for x in bboard[r]])
-
 
 def render_path(board_path: np.ndarray, soln, size_rows, size_cols):
     global batch_number
