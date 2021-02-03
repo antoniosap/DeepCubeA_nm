@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/DeepCubeA.iml" filepath="$PROJECT_DIR$/.idea/DeepCubeA.iml" />
       <module fileurl="file://$PROJECT_DIR$/../AlphaZero/.idea/DeepReinforcementLearning.iml" filepath="$PROJECT_DIR$/../AlphaZero/.idea/DeepReinforcementLearning.iml" />
+      <module fileurl="file://$USER_HOME$/workspace-elastic/elasticsearch-py/.idea/elasticsearch-py.iml" filepath="$USER_HOME$/workspace-elastic/elasticsearch-py/.idea/elasticsearch-py.iml" />
       <module fileurl="file://$PROJECT_DIR$/../n-puzzle/.idea/n-puzzle.iml" filepath="$PROJECT_DIR$/../n-puzzle/.idea/n-puzzle.iml" />
       <module fileurl="file://$PROJECT_DIR$/../z3-trials/.idea/z3-trials.iml" filepath="$PROJECT_DIR$/../z3-trials/.idea/z3-trials.iml" />
     </modules>
